@@ -1,13 +1,13 @@
 <?php
-date_default_timezone_get('Asia/Taipie');
+date_default_timezone_set('Asia/Taipei');
 session_start();
 
 class DB{
-    protected $dsn="mysql:host=localhost;charset=utf8;dbname=web18";
+    protected $dsn="mysql:host=localhost;charset=utf8;dbname=db18";
     protected $pdo;
     protected $table;
 
-    function construct($table){
+    function __construct($table){
         $this->table=$table;
         $this->pdo=new PDO($this->dsn,'root','');
     }
@@ -49,10 +49,11 @@ class DB{
 
         }else{
             // insert
-            $keys=join("``",array_keys($array));
+            $keys=join("`,`",array_keys($array));
             $values=join("','",$array);
-            $sql="insert into $this->table (`{$keys}`) values (`{$values}`)";
+            $sql="insert into $this->table (`{$keys}`) values('{$values }')";
         }
+        echo $sql;
         return $this->pdo->exec($sql);
     }
 
@@ -67,7 +68,7 @@ class DB{
         return $this->exec($sql);
     }
 
-    function count(){
+    function count(...$arg){
         $sql="select count(*) from $this->table ";
         if(!empty($arg[0]) && is_array($arg[0])){
             $tmp=$this->arrayToSQL($arg[0]);
@@ -117,3 +118,6 @@ function dd($array){
     print_r($array);
     echo "</pre>;";
 }
+
+$Mem=new DB('members');
+$Admin=new DB('admins');
