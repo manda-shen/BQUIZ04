@@ -98,7 +98,7 @@ class DB{
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
     function fetch_all(){
-        return $this->pdo->query($sql)->fetchALL(PDO::FETCH_ASSOC);
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
 }
@@ -110,7 +110,7 @@ function to($url){
 function q($sql){
     $dsn="mysql:host=localhost;charset=utf8;dbname=db18";
     $pdo=new PDO($dsn,'root','');
-    return $pdo->query($sql)->fetchALL();
+    return $pdo->query($sql)->fetchAll();
 }
 
 function dd($array){
