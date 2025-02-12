@@ -8,7 +8,7 @@ $chk=$$table->count($_GET);
 dd($chk); */
 if($chk){
     echo 1;
-    $_SESSION['login']=$_GET['acc'];
+    $_SESSION[$table]=$_GET['acc'];
 }else{
     echo 0;
 }
