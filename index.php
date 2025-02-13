@@ -30,7 +30,7 @@
                                 <?php
                                 if(empty($_SESSION['Mem'])){
                                 ?>
-                                <a href="?do=admin">會員登入</a> |
+                                <a href="?do=login">會員登入</a> |
                                 <?php
                                 }else{
                                 ?>
@@ -76,7 +76,8 @@
 
                 </div>
                 <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-                        頁尾版權 : </div>
+                        <?=$Bot->find(1)['bottom'];?>
+                </div>
         </div>
 
 </body>

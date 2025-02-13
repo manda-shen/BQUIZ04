@@ -1,5 +1,5 @@
 <h2>第一次購物</h2>
-<img src="./icon/0413.jpg" alt="">
+<a href="?do=reg"><img src="./icon/0413.jpg" alt=""></a>
 <h2>會員登入</h2>
 <table class="all">
     <tr>
@@ -14,10 +14,10 @@
         <td class="tt ct">驗證碼</td>
         <td class="pp">
             <?php
-            $a=rand(10,99);
-            $b=rand(10,99);
-            $_SESSION['ans']=$a+$b;
-            echo $a . " + " . $b . " = ";
+                $a=rand(10,99);
+                $b=rand(10,99);
+                $_SESSION['ans']=$a+$b;
+                echo $a . " + " . $b . " = ";
             ?>
             <input type="text" name="ans" id="ans"></td>
     </tr>
@@ -34,7 +34,7 @@
                 $.get("api/chk_pw.php",{
                     acc:$("#acc").val(),
                     pw:$("#pw").val(),
-                    table:$("#table").val()
+                    table:"Mem"
                 },function(res){
                     //console.log(res)
                     if(parseInt(res)){
@@ -50,5 +50,3 @@
         })
     }
 </script>
-
-
