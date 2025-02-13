@@ -13,7 +13,7 @@
     <tr>
         <td class="tt ct">驗證碼</td>
         <td class="pp">
-            <?php
+        <?php
                 $a=rand(10,99);
                 $b=rand(10,99);
                 $_SESSION['ans']=$a+$b;

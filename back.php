@@ -15,6 +15,7 @@ $pr=unserialize($user['pr']);
 	<title>┌精品電子商務網站」</title>
 	<link href="./css/css.css" rel="stylesheet" type="text/css">
 	<script src="./js/js.js"></script>
+	<script src="./js/jquery-3.4.1.min.js"></script>
 </head>
 
 <body>
@@ -36,19 +37,20 @@ $pr=unserialize($user['pr']);
                     echo (in_array(4,$pr))?"<a href='?do=bot'>頁尾版權管理</a>":'';
                     echo (in_array(5,$pr))?"<a href='?do=news'>最新消息管理</a>":'';
 				?>
-				<a href="?do=./api/logout.php?table=Admin" style="color:#f00;">登出</a>
+				<a href="./api/logout.php?table=Admin" style="color:#f00;">登出</a>
 			</div>
 		</div>
 		<div id="right">
 		
-		<?php
+		<?php 
         $do=$_GET['do']??'admin';
         $file="back/".$do.".php";
         if(file_exists($file)){
-                include $file;
+            include $file;
         }else{
-                include "back/admin.php";
+            include "back/admin.php";
         }
+
 
         ?>
 
