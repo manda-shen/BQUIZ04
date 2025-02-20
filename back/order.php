@@ -19,7 +19,7 @@
         <td><?=$row['name']; ?></td>
         <td><?=date("Y/m/d", strtotime($row['order_time'])); ?></td>
         <td>
-            <button onclick="del('Order',<?php echo $row['id']; ?>)">刪除</button>
+            <button onclick="del('Order',<?=$row['id']; ?>)">刪除</button>
         </td>
     </tr>
     <?php
