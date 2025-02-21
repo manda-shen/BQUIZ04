@@ -15,14 +15,24 @@ if($typeId==0){
 }
 ?>
 <h2><?=$nav;?></h2>
-
 <style>
     .item{
-        display:flex;
-        flex-direction:row;
+        display: flex;
+        margin: 3px auto;
+        width:85%;
+    }
+    .item div{
+        padding:5px;
+        border:1px solid white;
+    }
+    .item>div:nth-child(1){
+        width:40%;
+    }
+    .item>div:nth-child(2){
+        width:60%;
     }
 </style>
-<?php
+<?php 
 if($typeId==0){
     $rows=$Item->all(['sh'=>1]);
 }else if($type['big_id']==0){
@@ -30,26 +40,43 @@ if($typeId==0){
 }else{
     $rows=$Item->all(['mid'=>$typeId,'sh'=>1]);
 }
-
+?>
+<?php
 foreach($rows as $row):
 ?>
-<div class='item'>
-    <div >
+    <div class='item'>
+    <div class='pp'>
         <a href="?do=detail&id=<?=$row['id'];?>">
-            <img width="200px" src="./img/<?=$row['img'];?>" alt="">
+            <img src="./img/<?=$row['img'];?>" style="width:200px;height:160px">
         </a>
     </div>
     <div>
-        <div><?=$row['name'];?></div>
-        <div>價錢:<?=$row['price'];?></div>
-        <div>規格:<?=$row['spec'];?></div>
-        <div>介紹:<?=mb_substr($row['intro'],0,20);?>...</div>   
-        <div>
-            <a href="?do=buycart&id=<?=$row['id'];?>&qt=1">
-            <img src="./icon/0402.jpg"></a>
-        </div>     
+        <div class='tt ct'>
+            <?=$row['name'];?>
+            
+        </div>
+        <div class='pp'>
+            價錢:<?=$row['price'];?>
+            <a href="javascript:buycart(<?=$row['id'];?>,1)">
+                <img src="./icon/0402.jpg" style="float:right">
+            </a>
+        </div>
+        <div class='pp'>規格:<?=$row['spec'];?></div>
+        <div class='pp'>簡介:<?=mb_substr($row['intro'],0,20);?>...</div>
     </div>
 </div>
 <?php
 endforeach;
 ?>
+
+<script>
+
+
+
+function buycart(id,qt){
+    $.post("api/buycart.php",{id,qt},function(count){
+        $("#items").text(`(${count})`);
+        alert("已加入購物車");
+    })
+}    
+</script>

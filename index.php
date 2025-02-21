@@ -24,7 +24,7 @@
                 <a href="?">回首頁</a> |
                 <a href="?do=news">最新消息</a> |
                 <a href="?do=look">購物流程</a> |
-                <a href="?do=buycart">購物車</a> |
+                <a href="?do=buycart">購物車<span id='items'></span></a> |
                 <?php 
                 if(empty($_SESSION['Mem'])){
                 ?>
@@ -64,12 +64,11 @@
                 echo    $big['name'];
                 echo "({$Item->count(['big'=>$big['id'],'sh'=>1])})";
                 echo    "</a>";
-
                 if($Type->count(['big_id'=>$big['id']])>0){
                     $mids=$Type->all(['big_id'=>$big['id']]);
                     echo "<div class='s'>";
                     foreach($mids as $mid){
-                        echo "<a href='?type={$mid['id']}' style='background-color:rgb(206, 150, 128);color:white;'>";
+                        echo "<a href='?type={$mid['id']}' style='background-color: #7ee185;'>";
                         echo $mid['name'];
                         echo "({$Item->count(['mid'=>$mid['id'],'sh'=>1])})";
                         echo "</a>";
@@ -77,10 +76,7 @@
                     echo "</div>";
                 }
                 echo "</div>";
-
-
-            }
-            
+            } 
             ?>
 
             </div>
@@ -110,3 +106,12 @@
 </body>
 
 </html>
+
+<script>
+    $.get("api/buycart.php",function(count){
+    console.log(count);
+    if(parseInt(count)>0){
+        $("#items").text(`(${count})`);
+    }
+})
+</script>
